@@ -4,9 +4,10 @@ import com.example.demo.data.dao.ProductDAO;
 import com.example.demo.data.entity.Product;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductDAOImpl implements ProductDAO {
-
     ProductRepository productRepository;
 
     @Autowired
@@ -16,8 +17,8 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Product saveProduct(Product productEntity) {
-        productRepository.save(productEntity);
-        return productEntity;
+        Product product1 = productRepository.save(productEntity);
+        return product1;
     }
 
     @Override
