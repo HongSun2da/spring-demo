@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.Constants;
+import com.example.demo.common.exception.AroundHubException;
 import com.example.demo.data.dto.ProductDto;
 import com.example.demo.service.ProductService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,5 +49,9 @@ public class ProductController {
         LOGGER.info("[createProduct] Response : {}, {}, {}, {}", productId, productName, productPrice, productStock);
 
         return productService.saveProduct(productId, productName, productPrice, productStock);
+    }
+    @PostMapping(value = "/product/exception")
+    public void exceptionTest() throws AroundHubException {
+        throw new AroundHubException(Constants.ExceptionClass.PRODUCT, HttpStatus.FORBIDDEN, "접근이 금지 되었습니다.");
     }
 }
